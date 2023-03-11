@@ -3,6 +3,11 @@ package com.youknowwho.androidclient;
 import static com.youknowwho.androidclient.GreetKotlinKt.greetKotlin;
 import static org.junit.Assert.assertEquals;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.youknowwho.androidclient.train.GetTask;
+import com.youknowwho.androidclient.train.Task;
+
 import org.junit.Test;
 
 import java.io.IOException;
@@ -22,6 +27,7 @@ public class ExampleUnitTest {
             .baseUrl("http://127.0.0.1:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+    Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
     @Test
     public void greetKotlin_works() {
@@ -43,5 +49,17 @@ public class ExampleUnitTest {
         Call<UserInfo> call = request.user(1);
         UserInfo user = call.execute().body();
         System.out.println(user);
+    }
+
+    /**
+     * Test getting a task.
+     * Requires Django server running.
+     */
+    @Test
+    public void getTask_works() throws IOException {
+        GetTask get = retrofit.create(GetTask.class);
+        Call<Task> call = get.task();
+        Task task = call.execute().body();
+        System.out.println(gson.toJson(task));
     }
 }
