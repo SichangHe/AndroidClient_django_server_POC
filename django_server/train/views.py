@@ -28,3 +28,10 @@ def task(request: Request):
             "global_weights": [34, 65, 7],
         }
     )
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes((permissions.AllowAny,))
+def post(request: Request):
+    print(request.data)
+    return Response()
