@@ -1,5 +1,6 @@
 package com.youknowwho.androidclient;
 
+import static com.youknowwho.androidclient.GreetKotlinKt.greetKotlin;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -21,6 +22,11 @@ public class ExampleUnitTest {
             .baseUrl("http://127.0.0.1:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
+    @Test
+    public void greetKotlin_works() {
+        greetKotlin();
+    }
 
     @Test
     public void addition_isCorrect() {
