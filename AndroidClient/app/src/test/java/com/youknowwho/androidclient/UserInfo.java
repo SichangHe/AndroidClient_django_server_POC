@@ -1,7 +1,5 @@
 package com.youknowwho.androidclient;
 
-import androidx.annotation.NonNull;
-
 public class UserInfo {
     public final String url;
     public final String username;
@@ -13,10 +11,5 @@ public class UserInfo {
         this.username = username;
         this.email = email;
         this.is_staff = is_staff;
-    }
-
-    @NonNull
-    public String toString() {
-        return "URL: " + url + ", username: " + username + ", email: " + email + ", is_staff: " + is_staff + ".";
     }
 }

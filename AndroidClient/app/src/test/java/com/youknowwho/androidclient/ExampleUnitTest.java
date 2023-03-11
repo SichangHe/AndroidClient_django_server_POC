@@ -48,7 +48,7 @@ public class ExampleUnitTest {
         RequestUserInfo request = retrofit.create(RequestUserInfo.class);
         Call<UserInfo> call = request.user(1);
         UserInfo user = call.execute().body();
-        System.out.println(user);
+        System.out.println(gson.toJson(user));
     }
 
     /**
