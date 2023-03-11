@@ -17,3 +17,13 @@ A toy server using SQLite and no package manager.
     ```shell
     python3 manage.py runserver
     ```
+
+## Visual Studio Code plugins
+
+Please use these plugins.
+
+- Code Spell Checker
+- Django
+- djLint
+- Pylance
+- Python

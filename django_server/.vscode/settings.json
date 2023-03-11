@@ -1,0 +1,10 @@
+{
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
+    "python.formatting.provider": "black",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.inlayHints.pytestParameters": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.languageServer": "Pylance"
+}
