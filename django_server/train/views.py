@@ -34,4 +34,4 @@ def task(request: Request):
 @permission_classes((permissions.AllowAny,))
 def post(request: Request):
     print(request.data)
-    return Response()
+    return Response({})

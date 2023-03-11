@@ -5,12 +5,17 @@ import static org.junit.Assert.assertEquals;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.youknowwho.androidclient.train.Empty;
 import com.youknowwho.androidclient.train.GetTask;
+import com.youknowwho.androidclient.train.PostData;
 import com.youknowwho.androidclient.train.Task;
+import com.youknowwho.androidclient.train.UploadData;
 
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -61,5 +66,19 @@ public class ExampleUnitTest {
         Call<Task> call = get.task();
         Task task = call.execute().body();
         System.out.println(gson.toJson(task));
+    }
+
+    /**
+     * Test posting data.
+     * Requires Django server running.
+     */
+    @Test
+    public void postData_works() throws IOException {
+        PostData post = retrofit.create(PostData.class);
+        UploadData uploadData = new UploadData(
+                0, Instant.now().getEpochSecond(), 0.452, Arrays.asList(0.0, 24.0, 5.0), 34.542);
+        Call<Empty> call = post.result(uploadData);
+        Empty result = call.execute().body();
+        System.out.println(gson.toJson(result));
     }
 }
