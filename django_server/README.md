@@ -18,6 +18,12 @@ A toy server using SQLite and no package manager.
     python3 manage.py runserver
     ```
 
+1. Create your super user.
+
+    ```shell
+    python3 manage.py createsuperuser --email admin@example.com --username admin
+    ```
+
 ## Visual Studio Code plugins
 
 Please use these plugins.

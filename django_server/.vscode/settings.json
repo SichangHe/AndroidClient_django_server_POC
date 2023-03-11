@@ -6,5 +6,10 @@
     "python.analysis.inlayHints.variableTypes": true,
     "python.analysis.inlayHints.pytestParameters": true,
     "python.analysis.diagnosticMode": "workspace",
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.fixAll": true
+    },
+    "files.autoSaveDelay": 300
 }
