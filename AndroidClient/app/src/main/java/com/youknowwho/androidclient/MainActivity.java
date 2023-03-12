@@ -25,8 +25,19 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_main;
     Button btn_post;
 
-    public void getTask(View view) {
+    void getTask(View view) {
         Disposable subscription = Flowable.fromCallable(train::getTask)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        result -> tv_main.setText(gson.toJson(result)),
+                        error -> tv_main.setText(error.getMessage())
+                );
+        disposables.add(subscription);
+    }
+
+    void postData(View view) {
+        Disposable subscription = Flowable.fromCallable(train::postData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -45,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btn_post = findViewById(R.id.btn_post);
 
         btn_get.setOnClickListener(this::getTask);
+        btn_post.setOnClickListener(this::postData);
     }
 
     @Override
