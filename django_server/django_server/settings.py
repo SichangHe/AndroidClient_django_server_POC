@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-!yyb%jyznxqzflyps-4q#kadk65^+!r08#ut1yxen_#n63z68f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# https://developer.android.com/studio/run/emulator-networking#networkaddresses
+ALLOWED_HOSTS = ["10.0.2.2"]
 
 
 # Application definition
