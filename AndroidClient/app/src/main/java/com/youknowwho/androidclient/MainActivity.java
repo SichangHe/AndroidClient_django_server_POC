@@ -1,6 +1,5 @@
 package com.youknowwho.androidclient;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,24 +13,27 @@ import com.youknowwho.androidclient.train.Train;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-    private final Train train = new Train();
-    private TextView tv_main;
-    private Button btn_get;
-    private Button btn_post;
+    Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+    Train train = new Train();
+    CompositeDisposable disposables = new CompositeDisposable();
+    Button btn_get;
+    TextView tv_main;
+    Button btn_post;
 
-    @SuppressLint("CheckResult")
     public void getTask(View view) {
-        Flowable.fromCallable(train::getTask)
+        Disposable subscription = Flowable.fromCallable(train::getTask)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         result -> tv_main.setText(gson.toJson(result)),
                         error -> tv_main.setText(error.getMessage())
                 );
+        disposables.add(subscription);
     }
 
     @Override
@@ -43,5 +45,11 @@ public class MainActivity extends AppCompatActivity {
         btn_post = findViewById(R.id.btn_post);
 
         btn_get.setOnClickListener(this::getTask);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposables.dispose();
     }
 }
