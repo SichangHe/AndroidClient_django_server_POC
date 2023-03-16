@@ -1,7 +1,6 @@
 package com.youknowwho.androidclient;
 
 import static com.youknowwho.androidclient.GreetKotlinKt.greetKotlin;
-import static org.junit.Assert.assertEquals;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,11 +36,6 @@ public class ExampleUnitTest {
     @Test
     public void greetKotlin_works() {
         greetKotlin();
-    }
-
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
     }
 
     /**

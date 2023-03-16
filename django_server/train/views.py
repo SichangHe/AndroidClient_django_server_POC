@@ -23,7 +23,15 @@ class UserViewSet(viewsets.ModelViewSet):
 def task(request: Request):
     return Response(
         {
-            "configuration": {"learning_rate": 0.1},
+            "configuration": {
+                "federated_optimizer": "FedAvg",
+                "comm_round": 10,
+                "epochs": 10,
+                "batch_size": 10,
+                "client_optimizer": "sgd",
+                "learning_rate": 0.1,
+                "weight_decay": 0.001,
+            },
             "send_time": time.time(),
             "global_weights": [34, 65, 7],
         }
